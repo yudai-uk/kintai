@@ -8,6 +8,14 @@ import (
 )
 
 func SetupRoutes(e *echo.Echo, db *gorm.DB) {
+	// Health check endpoint
+	e.GET("/health", func(c echo.Context) error {
+		return c.JSON(200, map[string]string{
+			"status": "OK",
+			"message": "Backend is running",
+		})
+	})
+
 	attendanceHandler := handlers.NewAttendanceHandler(db)
 	leaveHandler := handlers.NewLeaveHandler(db)
 	scheduleHandler := handlers.NewScheduleHandler(db)
