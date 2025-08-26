@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-neutral-50 group/design-root overflow-x-hidden" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#ededed] px-10 py-3">
+          <div class="flex items-center gap-4 text-[#141414]">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_6_330)">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"
+                    fill="currentColor"
+                  ></path>
+                </g>
+                <defs>
+                  <clipPath id="clip0_6_330"><rect width="48" height="48" fill="white"></rect></clipPath>
+                </defs>
+              </svg>
+            </div>
+            <h2 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em]">TimeTrack</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Dashboard</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Schedule</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Leave</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Reports</a>
+            </div>
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuACe1AITOH55xnQHPkQucHd2mA7v0jW8QGc7Dn-WPj_rwmZWEMH8rDpM3bveYjAkaIdFDqFca7J5d15YlqmDMyj5hFqOBJ71i0-N0zr_Ntv2Rkewvf-NmtivbZ-thJIuY6v4kjL8XpnrX5uHHIegzRGeeULiIYkrvYIGlzP6TkG2RwU4fX10BU5Yig1OGy1b4qUmwasXWKmh5CS1oWHtCu_eGPQzn14t-vYbHLh47UWAMX8UO_oT22d0eyVCv37gMjJ1-cEM8frw7Qy");'
+            ></div>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Dashboard</p></div>
+            <h2 class="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Today's Clock In/Out</h2>
+            <div class="flex items-center gap-4 bg-neutral-50 px-4 min-h-[72px] py-2">
+              <div class="text-[#141414] flex items-center justify-center rounded-lg bg-[#ededed] shrink-0 size-12" data-icon="Clock" data-size="24px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                  <path
+                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex flex-col justify-center">
+                <p class="text-[#141414] text-base font-medium leading-normal line-clamp-1">8:00 AM</p>
+                <p class="text-neutral-500 text-sm font-normal leading-normal line-clamp-2">Clocked In</p>
+              </div>
+            </div>
+            <div class="flex justify-stretch">
+              <div class="flex flex-1 gap-3 flex-wrap px-4 py-3 justify-between">
+                <button
+                  class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#999999] text-[#141414] text-sm font-bold leading-normal tracking-[0.015em]"
+                >
+                  <span class="truncate">Clock Out</span>
+                </button>
+                <button
+                  class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#ededed] text-[#141414] text-sm font-bold leading-normal tracking-[0.015em]"
+                >
+                  <span class="truncate">Start Break</span>
+                </button>
+              </div>
+            </div>
+            <h2 class="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Clocked Events</h2>
+            <div class="px-4 py-3 @container">
+              <div class="flex overflow-hidden rounded-xl border border-[#dbdbdb] bg-neutral-50">
+                <table class="flex-1">
+                  <thead>
+                    <tr class="bg-neutral-50">
+                      <th class="table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-120 px-4 py-3 text-left text-[#141414] w-[400px] text-sm font-medium leading-normal">Time</th>
+                      <th class="table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-240 px-4 py-3 text-left text-[#141414] w-[400px] text-sm font-medium leading-normal">Event</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t border-t-[#dbdbdb]">
+                      <td class="table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-120 h-[72px] px-4 py-2 w-[400px] text-neutral-500 text-sm font-normal leading-normal">
+                        8:00 AM
+                      </td>
+                      <td class="table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-240 h-[72px] px-4 py-2 w-[400px] text-neutral-500 text-sm font-normal leading-normal">
+                        Clock In
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbdbdb]">
+                      <td class="table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-120 h-[72px] px-4 py-2 w-[400px] text-neutral-500 text-sm font-normal leading-normal">
+                        12:00 PM
+                      </td>
+                      <td class="table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-240 h-[72px] px-4 py-2 w-[400px] text-neutral-500 text-sm font-normal leading-normal">
+                        Lunch Start
+                      </td>
+                    </tr>
+                    <tr class="border-t border-t-[#dbdbdb]">
+                      <td class="table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-120 h-[72px] px-4 py-2 w-[400px] text-neutral-500 text-sm font-normal leading-normal">
+                        1:00 PM
+                      </td>
+                      <td class="table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-240 h-[72px] px-4 py-2 w-[400px] text-neutral-500 text-sm font-normal leading-normal">
+                        Lunch End
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <style>
+                          @container(max-width:120px){.table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-120{display: none;}}
+                @container(max-width:240px){.table-8a72b19e-6158-450a-9852-4fbd25c29db0-column-240{display: none;}}
+              </style>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "kintai-dev",
+  "private": true,
+  "scripts": {
+    "dev": "powershell -ExecutionPolicy Bypass -File ./dev.ps1",
+    "dev:unix": "bash ./dev.sh"
+  }
+}
+

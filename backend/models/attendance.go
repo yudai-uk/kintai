@@ -7,16 +7,21 @@ import (
 )
 
 type Attendance struct {
-	ID        uint           `json:"id" gorm:"primaryKey"`
-	UserID    uint           `json:"user_id" gorm:"not null;index"`
-	Date      time.Time      `json:"date" gorm:"not null;index"`
-	ClockIn   *time.Time     `json:"clock_in"`
-	ClockOut  *time.Time     `json:"clock_out"`
-	BreakTime int            `json:"break_time" gorm:"default:0"` // minutes
-	Note      string         `json:"note"`
-	CreatedAt time.Time      `json:"created_at"`
-	UpdatedAt time.Time      `json:"updated_at"`
-	DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
+    ID        uint           `json:"id" gorm:"primaryKey"`
+    UserID    uint           `json:"user_id" gorm:"not null;index"`
+    Date      time.Time      `json:"date" gorm:"not null;index"`
+    ClockIn   *time.Time     `json:"clock_in"`
+    ClockOut  *time.Time     `json:"clock_out"`
+    BreakTime int            `json:"break_time" gorm:"default:0"` // minutes
+    BreakStart *time.Time    `json:"break_start"`
+    BreakEnd   *time.Time    `json:"break_end"`
+    OutStart  *time.Time     `json:"out_start"`
+    OutEnd    *time.Time     `json:"out_end"`
+    WorkMode  string         `json:"work_mode" gorm:"default:'office'"` // office or remote
+    Note      string         `json:"note"`
+    CreatedAt time.Time      `json:"created_at"`
+    UpdatedAt time.Time      `json:"updated_at"`
+    DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
 
 	User User `json:"user,omitempty" gorm:"foreignKey:UserID"`
 }

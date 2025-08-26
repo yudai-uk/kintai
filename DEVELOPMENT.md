@@ -10,6 +10,20 @@
 
 ## セットアップ手順
 
+### 一括起動（おすすめ：1コマンド）
+- Windows: ルートで `npm run dev` または `./dev.ps1`
+- macOS/Linux: ルートで `npm run dev:unix` または `bash ./dev.sh`
+
+実行内容:
+- Supabase ローカル（Docker）を起動し、DBポート 54322 を待機
+- Backend（Go）を起動（`backend/.env`の`DATABASE_URL`を使用）
+- Frontend（Next.js）を起動
+
+起動後のURL:
+- Frontend: http://localhost:3000
+- Backend: http://localhost:8080 (health: /health)
+- Supabase Studio: http://127.0.0.1:54323
+
 ### 1. Supabase Local Development環境の起動
 ```bash
 cd C:\Users\yudai\Programs\kintai
@@ -53,6 +67,15 @@ npm install
 npm run dev
 ```
 
+### Supabase 認証（ログイン）
+- 環境変数を設定（`frontend/.env.local` を作成）
+  - 例は `frontend/.env.local.example` を参照
+  - `NEXT_PUBLIC_SUPABASE_URL` と `NEXT_PUBLIC_SUPABASE_ANON_KEY` を設定（`supabase status` で取得可能）
+- ログイン画面: `http://localhost:3000/login`
+- 成功時: セッションCookieが設定され、保護ルートへ遷移します
+
+ミドルウェアで未認証の保護ルート（例: `/employee`, `/admin`）は `/login` にリダイレクトされます。
+
 ## 動作確認
 
 ### 1. ブラウザでアクセス
@@ -74,6 +97,15 @@ http://localhost:3000 にアクセスします。
 
 ## トラブルシューティング
 
+### Supabase コンテナ名の衝突（"name is already in use"）
+既存の Supabase/Docker コンテナと名前が衝突しています。
+
+- 対処: リポジトリ直下（または `supabase` ディレクトリ）で `supabase stop` を実行。
+- それでも解消しない場合、該当コンテナを削除：
+  - 一覧: `docker ps -a --format "{{.ID}}\t{{.Names}}" | findstr kintai`
+  - 削除: `docker rm -f <IDまたは名前>`
+  - その後、`npm run dev` を再実行。
+
 ### ポートが使用されている場合
 - Frontend (3000): `npm run dev -- -p 3001` で別ポート使用
 - Backend (8080): 環境変数 `PORT=8081` で別ポート指定
@@ -81,6 +113,13 @@ http://localhost:3000 にアクセスします。
 ### データベース接続エラー
 1. Supabaseが起動していることを確認: `supabase status`
 2. 環境変数の確認: `backend/.env`ファイルのDATABASE_URL
+3. それでも `54322` に接続できない場合は、`supabase stop` → `supabase start` をやり直し
+
+### 認証トラブル（JWT検証）
+- `backend/.env` に `SUPABASE_JWT_SECRET` が設定されているか確認
+  - 値は `supabase status` に表示される「JWT secret」と一致させてください
+- 401エラー時はフロントのリクエストに `Authorization: Bearer <access_token>` が付いているか確認
+  - `frontend` 側は `apiClient.get(url, { auth: true })` で自動付与されます
 
 ### CORS エラー
 バックエンドのmain.goでCORS設定済み：
@@ -110,6 +149,13 @@ go mod tidy       # 依存関係整理
 supabase start    # ローカル環境起動
 supabase stop     # ローカル環境停止
 supabase status   # ステータス確認
+
+## ログ出力
+
+- ログディレクトリ: ルートの `log/`
+  - フロントエンド: `log/frontend.log`
+  - （将来）バックエンドも同ディレクトリへ出力予定
+- いまはログイン失敗、employeeページのAPIエラー/操作失敗を自動で追記します。
 ```
 
 ## API エンドポイント

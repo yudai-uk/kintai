@@ -1,16 +1,16 @@
 package main
 
 import (
-	"log"
-	"os"
+    "log"
+    "os"
 
-	"github.com/joho/godotenv"
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
-	"github.com/yudai-uk/backend/models"
-	"github.com/yudai-uk/backend/routes"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
+    "github.com/joho/godotenv"
+    "github.com/labstack/echo/v4"
+    echomw "github.com/labstack/echo/v4/middleware"
+    "github.com/yudai-uk/backend/models"
+    "github.com/yudai-uk/backend/routes"
+    "gorm.io/driver/postgres"
+    "gorm.io/gorm"
 )
 
 func main() {
@@ -21,6 +21,10 @@ func main() {
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
 		log.Fatal("DATABASE_URL is not set in the .env file")
+	}
+
+	if os.Getenv("SUPABASE_JWT_SECRET") == "" {
+		log.Fatal("SUPABASE_JWT_SECRET is not set in the .env file")
 	}
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
@@ -39,9 +43,13 @@ func main() {
 
 	e := echo.New()
 
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-	e.Use(middleware.CORS())
+    e.Use(echomw.Logger())
+    e.Use(echomw.Recover())
+    e.Use(echomw.CORSWithConfig(echomw.CORSConfig{
+        AllowOrigins: []string{"http://localhost:3000", "http://127.0.0.1:3000"},
+        AllowMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+        AllowHeaders: []string{"Content-Type", "Authorization"},
+    }))
 
 	routes.SetupRoutes(e, db)
 
